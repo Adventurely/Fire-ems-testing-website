@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EMS &amp; Fire Exam Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> EMS &amp; Fire Exam Prep</a>
+    <nav class="site">
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="quiz.html?track=ems&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Study for the EMS and fire exams</h1>
+  <p class="sub">Practice questions with explanations, timed exam simulations, and rapid-recall flashcards.
+    <span id="bank-count"></span>. Everything runs in your browser and your progress stays on this device.</p>
+
+  <div class="grid">
+    <a class="card" href="quiz.html?track=ems&amp;mode=practice&amp;count=20">
+      <span class="tag ems">EMS / NREMT</span>
+      <h3>EMT practice quiz</h3>
+      <p class="muted">Airway, cardiology, trauma, medical and OB, operations. Feedback and explanation after every question.</p>
+    </a>
+    <a class="card" href="quiz.html?track=fire&amp;mode=practice&amp;count=20">
+      <span class="tag fire">Firefighter I &amp; II</span>
+      <h3>Firefighter practice quiz</h3>
+      <p class="muted">Fire behavior, SCBA, ladders and ropes, hose and streams, ventilation, hazmat, fireground ops.</p>
+    </a>
+    <a class="card" href="quiz.html?track=mixed&amp;mode=exam&amp;count=40">
+      <span class="tag both">Both tracks</span>
+      <h3>40-question timed exam</h3>
+      <p class="muted">One minute per question, no feedback until you finish. The closest thing here to test day.</p>
+    </a>
+    <a class="card" href="flashcards.html">
+      <span class="tag both">Rapid recall</span>
+      <h3>Flashcards</h3>
+      <p class="muted">Doses, rates, depths, color codes, and mnemonics - the details worth knowing cold.</p>
+    </a>
+  </div>
+
+  <h2>Build a quiz</h2>
+  <div class="card">
+    <div class="controls">
+      <div>
+        <label class="field" for="track">Track</label>
+        <select id="track">
+          <option value="ems">EMS / NREMT</option>
+          <option value="fire">Firefighter I &amp; II</option>
+          <option value="mixed">Mixed</option>
+        </select>
+      </div>
+      <div>
+        <label class="field" for="domain">Topic</label>
+        <select id="domain"></select>
+      </div>
+      <div>
+        <label class="field" for="count">Questions</label>
+        <input type="number" id="count" value="20" min="1" max="100">
+      </div>
+      <div>
+        <label class="field" for="mode">Mode</label>
+        <select id="mode">
+          <option value="practice">Practice - explain as I go</option>
+          <option value="exam">Timed exam - score at the end</option>
+        </select>
+      </div>
+    </div>
+    <p class="muted" id="available" style="margin:12px 0 0"></p>
+    <div class="btn-row">
+      <button class="btn primary" id="start" type="button">Start quiz</button>
+      <button class="btn" id="drill-missed" type="button">Drill my missed questions</button>
+    </div>
+  </div>
+
+  <h2>Your progress</h2>
+  <div id="summary"></div>
+
+  <h2>Weakest topics</h2>
+  <div id="weak"></div>
+
+  <div class="btn-row">
+    <button class="btn" id="reset" type="button">Reset progress on this device</button>
+  </div>
+
+  <p class="disclaimer">
+    Study aid only. Questions are written against widely taught national material - the NREMT cognitive exam
+    blueprint, NFPA 1001, and standard IFSTA content - but they are not actual exam questions and they are not
+    a substitute for your course, your textbook, or your medical director's protocols. Drug doses and treatment
+    steps vary by state, agency, and protocol: always follow your own. Verify anything here against current
+    guidelines before you rely on it in the field.
+  </p>
+
+</main>
+
+<script src="js/data/ems-questions.js"></script>
+<script src="js/data/fire-questions.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/store.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

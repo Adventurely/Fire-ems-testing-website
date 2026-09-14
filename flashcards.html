@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards - EMS &amp; Fire Exam Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> EMS &amp; Fire Exam Prep</a>
+    <nav class="site">
+      <a href="index.html">Dashboard</a>
+      <a href="quiz.html?track=ems&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html" class="active">Flashcards</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Flashcards</h1>
+  <p class="sub">Tap the card to flip, tap again for the next one. Space flips, arrow keys move.</p>
+
+  <div class="controls" style="margin-bottom:18px">
+    <div>
+      <label class="field" for="card-track">Track</label>
+      <select id="card-track">
+        <option value="all">Both</option>
+        <option value="ems">EMS / NREMT</option>
+        <option value="fire">Firefighter I &amp; II</option>
+      </select>
+    </div>
+    <div>
+      <label class="field" for="card-topic">Topic</label>
+      <select id="card-topic"></select>
+    </div>
+  </div>
+
+  <div class="flashcard" id="flashcard"></div>
+
+  <div class="quizbar" style="margin-top:14px">
+    <span class="muted" id="card-position"></span>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="card-prev" type="button">Previous</button>
+    <button class="btn primary" id="card-next" type="button">Next</button>
+    <button class="btn" id="card-shuffle" type="button">Shuffle deck</button>
+  </div>
+
+  <p class="disclaimer">
+    Study aid only. Verify all doses, rates, and procedures against your current protocols and course material.
+  </p>
+</main>
+
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/ems-questions.js"></script>
+<script src="js/data/fire-questions.js"></script>
+<script src="js/store.js"></script>
+<script src="js/cards.js"></script>
+</body>
+</html>
