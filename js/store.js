@@ -148,6 +148,12 @@ function el(tag, className, text) {
   return node;
 }
 
+/* Refs are either a numeric standing order ("2002") or a document name
+   ("Skill Sheet p7"). Only the numeric ones read correctly after "Protocol". */
+function refLabel(ref) {
+  return /^[0-9]{4}$/.test(ref) ? "Protocol " + ref : ref;
+}
+
 function param(name, fallback) {
   const value = new URLSearchParams(window.location.search).get(name);
   return value === null || value === "" ? fallback : value;

@@ -16,10 +16,27 @@ Content is organized to match the **GMVEMSC EMT Protocol Testing Summary** sheet
 | **Mega Code** | Adult and pediatric AED, CPR ratios/rates/depths (2002), resuscitation and field termination (2001), Cardiac / Stroke / Trauma Alerts (2009, 4017, 3018) |
 | **Airway & Trauma** | Rescue airway scope limits (1008), advanced airway confirmation and EtCO2 (1009), CPAP, commercial tourniquets |
 | **Medications** | The 8000-series formulary — albuterol, ipratropium, aspirin, epinephrine, naloxone, nitroglycerin, oral glucose, ondansetron — with doses, contraindications, and which need an MCP order at the EMT level |
-| **Miscellaneous Skills** | 12-lead acquisition, EtCO2, spinal motion restriction (3017), glucometer and oral glucose, IN/IM medication routes |
+| **Miscellaneous Skills** | 12-lead acquisition, EtCO2, spinal motion restriction (3017), glucometer and oral glucose, IN/IM medication routes, IV setup |
 
-**101 questions**, each citing the standing order or skill sheet it came from, plus **42 flashcards**,
-**8 practical skill-sheet checklists** transcribed from the Training Manual, and **10 training videos**.
+**115 questions**, each citing the standing order or skill sheet it came from, plus **47 flashcards**,
+**9 practical skill-sheet checklists** transcribed from the Training Manual, and **10 training videos**.
+
+### Handwritten items on the testing summary sheet
+
+Departments annotate the EMT Protocol Testing Summary by hand. The additions are covered here:
+
+| Handwritten item | Covered as |
+| --- | --- |
+| **Atrovent** (next to Albuterol) | Ipratropium, formulary 8023 — combined with the *first* albuterol dose only |
+| **/IM** (next to Epinephrine) | Epinephrine 1:1,000 IM, formulary 8018 — weight ladder 0.15 / 0.3 / 0.5 mg, distinct from the auto-injector rule |
+| **IN** (next to Naloxone) | Intranasal naloxone, formulary 8033 and the IN skill sheet — half the dose per nostril |
+| **Zofran** (next to Oral Glucose) | Ondansetron, formulary 8038 |
+| **IV SETUP** | Its own skill sheet, from the Premier Health / B.Braun locking hub and J-loop guide GMVEMSC distributes, plus the vascular access scope limits in 1012 and 1013 |
+
+Three drugs were **struck through** on the sample sheet — **AtroPen**, **Diazepam / CANA Pen**, and
+**DuoDote** — so no questions were written for them. They are nerve-agent antidotes belonging to the
+6000-series special operations protocols. Strike-throughs are made by the individual department, so
+confirm with your proctor before assuming they are off your test.
 
 ### Features
 

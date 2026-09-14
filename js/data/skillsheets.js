@@ -236,5 +236,33 @@ const SKILL_SHEETS = [
         "Artifact and what to do about it: skin prep, electrode attachment, patient movement, cable movement, vehicle movement, EMI"
       ]}
     ]
+  },
+  {
+    id: "ivsetup",
+    name: "IV Setup - B.Braun Locking Hub and J Loop",
+    page: "Premier Health / B.Braun quick guide, via GMVEMSC training resources",
+    levels: "Setup and assist at EMT level - the venipuncture itself is AEMT and above",
+    groups: [
+      { title: "Set up", steps: [
+        "Connect the green locking hub to the J loop",
+        "Attach the normal saline flush to the hub",
+        "Prefill (prime) the J loop with saline",
+        "Start the IV",
+        "Connect the J loop to the IV catheter"
+      ]},
+      { title: "Troubleshooting - cross threading", steps: [
+        "Turn the NS flush counter-clockwise a quarter turn",
+        "Then turn clockwise until the threads are completely flush with the hub"
+      ]},
+      { title: "Troubleshooting - will not connect", steps: [
+        "Depress the NS flush firmly against the hub BEFORE attempting to twist"
+      ]},
+      { title: "Scope reminders", steps: [
+        "IO insertion is not an EMR or EMT skill (protocol 1012)",
+        "Alternate vascular access - CVAD, PICC, dialysis fistula - is Paramedic only (protocol 1013)",
+        "Adult cardiac arrest access order: external jugular IV, antecubital IV, then proximal humeral head or distal femur IO (1012)",
+        "IO is limited to unresponsive or hemodynamically unstable patients when less invasive means are ineffective or unavailable (1012)"
+      ]}
+    ]
   }
 ];

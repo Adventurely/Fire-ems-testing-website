@@ -56,7 +56,7 @@
 
     dom.quiz.innerHTML = "";
 
-    const domainTag = el("div", "muted", item.ref.domain + "  \u00b7  Protocol " + item.ref.ref);
+    const domainTag = el("div", "muted", item.ref.domain + "  \u00b7  " + refLabel(item.ref.ref));
     dom.quiz.appendChild(domainTag);
 
     dom.quiz.appendChild(el("div", "qtext", item.ref.q));
@@ -132,7 +132,7 @@
       box.appendChild(el("div", "review-line", "Correct answer: " + item.choices[item.answer]));
     }
     box.appendChild(el("div", null, item.ref.why));
-    box.appendChild(el("div", "review-line muted", "Reference: GMVEMSC " + item.ref.ref));
+    box.appendChild(el("div", "review-line muted", "Reference: GMVEMSC " + refLabel(item.ref.ref)));
     dom.quiz.insertBefore(box, dom.quiz.querySelector(".btn-row"));
 
     document.getElementById("next-btn").disabled = false;
@@ -248,7 +248,7 @@
       questions.forEach(function (item, i) {
         if (answers[i] === item.answer) return;
         const block = el("div", "review-item");
-        block.appendChild(el("div", "muted", item.ref.domain + "  \u00b7  Protocol " + item.ref.ref));
+        block.appendChild(el("div", "muted", item.ref.domain + "  \u00b7  " + refLabel(item.ref.ref)));
         block.appendChild(el("div", "review-q", item.ref.q));
         const yours = el("div", "review-line");
         yours.appendChild(el("span", "lbl", "Your answer: "));

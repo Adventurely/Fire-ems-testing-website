@@ -313,5 +313,82 @@ const Q_MEDS = [
     ],
     answer: 1,
     why: "The standing orders' introduction states online medical direction is always an acceptable approach when items are not addressed or do not align with the current situation. The document is described as supportive by design, not punitive."
+  },
+
+  /* ---------- Epinephrine IM, Atrovent and Zofran: the routes and drugs
+       written in by hand on the testing summary sheet ---------- */
+  {
+    id: "rx-26", section: "Medications", domain: "Epinephrine", ref: "8018",
+    q: "A 40 kg patient in anaphylaxis is to receive epinephrine 1:1,000 IM. Per GMVEMSC 8018, the dose is:",
+    choices: ["0.15 mg IM", "0.3 mg IM", "0.5 mg IM", "1.0 mg IM"],
+    answer: 2,
+    why: "8018 doses by weight: 30 kg or more gets 0.5 mg IM, 15 to under 30 kg gets 0.3 mg IM, and under 15 kg gets 0.15 mg IM. May repeat at the weight-appropriate dose after 10 minutes."
+  },
+  {
+    id: "rx-27", section: "Medications", domain: "Epinephrine", ref: "8018",
+    q: "Per GMVEMSC 8018, a 20 kg pediatric patient in anaphylaxis receives epinephrine 1:1,000:",
+    choices: ["0.15 mg IM", "0.3 mg IM", "0.5 mg IM", "0.01 mg/kg IV"],
+    answer: 1,
+    why: "At 15 kg or more but under 30 kg the IM dose is 0.3 mg. Do not confuse the 1:1,000 IM ladder (0.15 / 0.3 / 0.5 mg) with the auto-injector rule, where 30 kg or more gets BOTH pens."
+  },
+  {
+    id: "rx-28", section: "Medications", domain: "Epinephrine", ref: "8018",
+    q: "What are the listed contraindications to epinephrine in the GMVEMSC formulary?",
+    choices: [
+      "Hypertension and tachycardia",
+      "Age over 65",
+      "None in the emergency setting",
+      "Known cardiac history"
+    ],
+    answer: 2,
+    why: "8017, 8018 and 8019 all list contraindications as 'None in the emergency setting.' Side effects are real - tachycardia, hypertension, dysrhythmias, and increased myocardial oxygen demand - but they do not stop you treating anaphylaxis."
+  },
+  {
+    id: "rx-29", section: "Medications", domain: "Ipratropium", ref: "8023",
+    q: "What are the contraindications to ipratropium (Atrovent) in GMVEMSC 8023?",
+    choices: [
+      "Narrow-angle glaucoma and lactation",
+      "None in the emergency setting, though use caution in narrow-angle glaucoma and lactating mothers",
+      "Any patient over 65",
+      "Tachycardia above 120"
+    ],
+    answer: 1,
+    why: "8023 lists no contraindications in the emergency setting, but advises caution in patients with narrow-angle glaucoma and in lactating mothers. Note the distinction between a contraindication and a precaution - the test uses both words."
+  },
+  {
+    id: "rx-30", section: "Medications", domain: "Ipratropium", ref: "8023",
+    q: "How does ipratropium (Atrovent) produce bronchodilation?",
+    choices: [
+      "Beta-2 agonist effect",
+      "Anticholinergic effect",
+      "Direct smooth muscle relaxation",
+      "Antihistamine effect"
+    ],
+    answer: 1,
+    why: "8023 describes the therapeutic action as bronchodilation by anticholinergic effect. Albuterol (8002) is the bronchodilator working through beta stimulation - the two are combined on the first treatment because the mechanisms differ."
+  },
+  {
+    id: "rx-31", section: "Medications", domain: "Ondansetron", ref: "8038",
+    q: "What is the indication for ondansetron (Zofran) in GMVEMSC 8038?",
+    choices: [
+      "Abdominal pain of any cause",
+      "Nausea or active vomiting",
+      "Vertigo",
+      "Prophylaxis before any medication administration"
+    ],
+    answer: 1,
+    why: "8038's indication is simply nausea or active vomiting. Its listed protocol is 4001 Abdominal Pain. Remember it is specifically NOT to be given prophylactically alongside naloxone."
+  },
+  {
+    id: "rx-32", section: "Medications", domain: "Ondansetron", ref: "8038",
+    q: "Per GMVEMSC 8038, for a patient who is ACTIVELY vomiting, the preferred route (AEMT/Paramedic) is:",
+    choices: [
+      "The orally dissolving tablet",
+      "Slow IV/IO, since the patient may also need hydration",
+      "Intranasal",
+      "Intramuscular"
+    ],
+    answer: 1,
+    why: "8038 names 4 mg slow IV/IO the preferred route for active vomiting, because the patient may need hydration as well. An actively vomiting patient is also unlikely to keep a dissolving tablet down."
   }
 ];

@@ -352,5 +352,91 @@ const Q_SKILLS = [
     ],
     answer: 0,
     why: "The sheet requires evaluating for signs and symptoms of anaphylaxis, obtaining the patient's auto-injector, assuring it is prescribed to the patient, and checking the expiration date and for cloudiness or discoloration before use. The injection site is the anterolateral thigh."
+  },
+
+  /* ---------- IV Setup (handwritten addition to the testing summary sheet) ---------- */
+  {
+    id: "iv-01", section: "Miscellaneous Skills", domain: "IV Setup", ref: "Premier Health B.Braun Guide",
+    q: "Per the B.Braun IV catheter quick guide distributed through GMVEMSC, what is the FIRST setup step?",
+    choices: [
+      "Start the IV, then attach the hub",
+      "Connect the green locking hub to the J loop, attach the saline flush, and prefill the J loop with saline",
+      "Spike the bag and prime the drip chamber",
+      "Connect the J loop directly to the catheter"
+    ],
+    answer: 1,
+    why: "The guide's order is: (1) connect the green locking hub to the J loop, attach the normal saline flush to the hub and prefill the J loop with saline, (2) start the IV, (3) connect the J loop to the IV catheter. The line is assembled and primed BEFORE the stick."
+  },
+  {
+    id: "iv-02", section: "Miscellaneous Skills", domain: "IV Setup", ref: "Premier Health B.Braun Guide",
+    q: "You cross-thread the saline flush on the locking hub. The guide's fix is to:",
+    choices: [
+      "Discard the hub and start over with a new one",
+      "Turn the flush counter-clockwise a quarter turn, then clockwise until the threads are completely flush with the hub",
+      "Force it clockwise until it seats",
+      "Use a J loop without a locking hub"
+    ],
+    answer: 1,
+    why: "Back it off counter-clockwise a quarter turn to let the threads reseat, then turn clockwise until the threads sit completely flush with the hub. Forcing a cross-threaded connection damages it and can leak."
+  },
+  {
+    id: "iv-03", section: "Miscellaneous Skills", domain: "IV Setup", ref: "Premier Health B.Braun Guide",
+    q: "The saline flush will not twist onto the locking hub. Per the guide, you should:",
+    choices: [
+      "Lubricate the threads",
+      "Depress the flush firmly against the hub before attempting to twist",
+      "Twist counter-clockwise instead",
+      "Attach the flush to the J loop instead"
+    ],
+    answer: 1,
+    why: "The guide's troubleshooting note for a connecting problem is to depress the NS flush firmly against the hub BEFORE attempting to twist. The luer connection has to be seated before the threads will engage."
+  },
+  {
+    id: "iv-04", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1012",
+    q: "Per GMVEMSC 1012, intraosseous (IO) insertion is:",
+    choices: [
+      "An EMT skill with medical control approval",
+      "Not an EMR or EMT skill",
+      "An EMT skill in cardiac arrest only",
+      "Available to all levels after department training"
+    ],
+    answer: 1,
+    why: "1012 states plainly that IO insertion is not an EMR skill and is not an EMT skill. It belongs to the AEMT and Paramedic. As an EMT you may set up and prime the line and assist, but you do not place the IO."
+  },
+  {
+    id: "iv-05", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1012",
+    q: "For an ADULT in cardiac arrest, GMVEMSC 1012 gives the preferable order of vascular access as:",
+    choices: [
+      "Proximal tibia IO, then antecubital IV, then external jugular",
+      "External jugular IV, then antecubital IV, then proximal humeral head or distal femur IO",
+      "Any IO site first, since it is fastest",
+      "Central line, then antecubital IV"
+    ],
+    answer: 1,
+    why: "1012 lists external jugular (EJ) vein IV first, then antecubital (AC) vein IV, then proximal humeral head or distal femur IO. If the distal femur is used, better access should be sought as the arrest progresses."
+  },
+  {
+    id: "iv-06", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1012",
+    q: "Per GMVEMSC 1012, IO access is limited to patients who are:",
+    choices: [
+      "Any patient needing fluids",
+      "Unresponsive or hemodynamically unstable, and only when less invasive means are ineffective or unavailable",
+      "In cardiac arrest only",
+      "Under 12 years old"
+    ],
+    answer: 1,
+    why: "1012's general guideline restricts IO use to unresponsive or hemodynamically unstable patients, and then only when less invasive means are ineffective or not available. It is not a shortcut around a difficult IV on a stable patient."
+  },
+  {
+    id: "iv-07", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1013",
+    q: "Per GMVEMSC 1013, who may use alternate vascular access routes such as a PICC line or dialysis fistula?",
+    choices: [
+      "Any certification level in cardiac arrest",
+      "AEMT and Paramedic",
+      "Paramedics only",
+      "EMT with medical control approval"
+    ],
+    answer: 2,
+    why: "1013 opens by stating the guideline is not for EMR, EMT or AEMT - only Paramedics may use alternative vascular routes. Note also that paramedics are NOT permitted to access a subcutaneously implanted port."
   }
 ];
