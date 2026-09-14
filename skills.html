@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill Sheets - GMVEMSC EMT Protocol Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
+    <nav class="site">
+      <a href="index.html">Dashboard</a>
+      <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="skills.html" class="active">Skill Sheets</a>
+      <a href="videos.html">Videos</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Practical skill sheets</h1>
+  <p class="sub">The graded checklists from the GMVEMSC Standing Orders Training Manual, in order.
+    Tick the boxes to rehearse a skill start to finish &mdash; checks are saved on this device.</p>
+
+  <div class="controls" style="margin-bottom:18px">
+    <div>
+      <label class="field" for="sheet-pick">Skill</label>
+      <select id="sheet-pick"></select>
+    </div>
+  </div>
+
+  <div id="sheet"></div>
+
+  <div class="btn-row">
+    <button class="btn" id="sheet-clear" type="button">Clear checkmarks</button>
+  </div>
+
+  <p class="disclaimer">
+    Transcribed from the public 2026 Standing Orders Training Manual for study. Your proctor grades from the
+    official sheet &mdash; use this to rehearse, not as the record.
+  </p>
+</main>
+
+<script src="js/data/questions-megacode.js"></script>
+<script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-meds.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/skillsheets.js"></script>
+<script src="js/data/videos.js"></script>
+<script src="js/store.js"></script>
+<script src="js/sheets.js"></script>
+</body>
+</html>

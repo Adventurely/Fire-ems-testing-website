@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GMVEMSC EMT Protocol Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
+    <nav class="site">
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="skills.html">Skill Sheets</a>
+      <a href="videos.html">Videos</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Greater Miami Valley EMS Council &mdash; EMT protocol testing</h1>
+  <p class="sub">Practice for the GMVEMSC EMT Protocol computer-based test and the departmental skill
+    evaluations. Built from the 2026 GMVEMSC Standing Orders and Training Manual, with every answer
+    citing the protocol number it comes from. <span id="bank-count"></span>.</p>
+
+  <div class="grid">
+    <a class="card" href="quiz.html?section=Mega%20Code&amp;mode=practice&amp;count=15">
+      <span class="tag ems">Section</span>
+      <h3>Mega Code</h3>
+      <p class="muted">CPR and AED per 2002, resuscitation and field termination per 2001, and Cardiac, Stroke and Trauma Alerts.</p>
+    </a>
+    <a class="card" href="quiz.html?section=Airway%20%26%20Trauma&amp;mode=practice&amp;count=15">
+      <span class="tag ems">Section</span>
+      <h3>Airway &amp; Trauma</h3>
+      <p class="muted">Rescue airway scope limits, EtCO2 confirmation, CPAP indications and contraindications, commercial tourniquets.</p>
+    </a>
+    <a class="card" href="quiz.html?section=Medications&amp;mode=practice&amp;count=15">
+      <span class="tag fire">Section</span>
+      <h3>Medications</h3>
+      <p class="muted">The 8000-series formulary: doses, contraindications, and which ones need an MCP order at the EMT level.</p>
+    </a>
+    <a class="card" href="quiz.html?section=Miscellaneous%20Skills&amp;mode=practice&amp;count=15">
+      <span class="tag fire">Section</span>
+      <h3>Miscellaneous Skills</h3>
+      <p class="muted">12-lead acquisition, EtCO2, spinal motion restriction, glucometer and oral glucose, medication routes.</p>
+    </a>
+    <a class="card" href="quiz.html?section=all&amp;mode=exam&amp;count=40">
+      <span class="tag both">Timed</span>
+      <h3>40-question timed exam</h3>
+      <p class="muted">One minute per question across all four sections, no feedback until you finish.</p>
+    </a>
+    <a class="card" href="videos.html">
+      <span class="tag ems">Video</span>
+      <h3>Training videos</h3>
+      <p class="muted">GMVEMSC's own CPAP, Narcan, SALT triage and equipment-removal videos, several carrying CE credit.</p>
+    </a>
+    <a class="card" href="skills.html">
+      <span class="tag both">Practical</span>
+      <h3>Skill sheets</h3>
+      <p class="muted">The proctor's checklists, step by step: CPAP, AED, tourniquet, supraglottic airway, EpiPen, 12-lead and more.</p>
+    </a>
+  </div>
+
+  <h2>Build a quiz</h2>
+  <div class="card">
+    <div class="controls">
+      <div>
+        <label class="field" for="section">Section</label>
+        <select id="section">
+          <option value="all">All sections</option>
+          <option value="Mega Code">Mega Code</option>
+          <option value="Airway &amp; Trauma">Airway &amp; Trauma</option>
+          <option value="Medications">Medications</option>
+          <option value="Miscellaneous Skills">Miscellaneous Skills</option>
+        </select>
+      </div>
+      <div>
+        <label class="field" for="domain">Topic</label>
+        <select id="domain"></select>
+      </div>
+      <div>
+        <label class="field" for="count">Questions</label>
+        <input type="number" id="count" value="20" min="1" max="100">
+      </div>
+      <div>
+        <label class="field" for="mode">Mode</label>
+        <select id="mode">
+          <option value="practice">Practice - explain as I go</option>
+          <option value="exam">Timed exam - score at the end</option>
+        </select>
+      </div>
+    </div>
+    <p class="muted" id="available" style="margin:12px 0 0"></p>
+    <div class="btn-row">
+      <button class="btn primary" id="start" type="button">Start quiz</button>
+      <button class="btn" id="drill-missed" type="button">Drill my missed questions</button>
+    </div>
+  </div>
+
+  <h2>Your progress</h2>
+  <div id="summary"></div>
+
+  <h2>Weakest topics</h2>
+  <div id="weak"></div>
+
+  <div class="btn-row">
+    <button class="btn" id="reset" type="button">Reset progress on this device</button>
+  </div>
+
+  <h2>Matching your testing summary sheet</h2>
+  <div class="card">
+    <h3>Handwritten additions &mdash; covered</h3>
+    <p class="muted" style="margin-top:0">Items written onto the EMT Protocol Testing Summary by hand are
+      included: <strong>Atrovent</strong> (ipratropium, 8023) alongside albuterol, <strong>epinephrine IM</strong>
+      (8018, the weight-based 0.15/0.3/0.5&nbsp;mg ladder &mdash; different from the auto-injector rule),
+      <strong>Narcan IN</strong> (8033, half the dose per nostril), <strong>Zofran</strong> (ondansetron, 8038),
+      and <strong>IV setup</strong> (the B.Braun locking hub and J-loop guide, with its own skill sheet).</p>
+    <h3 style="margin-top:18px">Struck through &mdash; deliberately not covered</h3>
+    <p class="muted" style="margin-top:0">The sample sheet this was built against had <strong>AtroPen</strong>,
+      <strong>Diazepam / CANA Pen</strong> and <strong>DuoDote</strong> crossed out, so no questions were written
+      for them. Those are nerve-agent antidotes and their own protocol family (6005 Organophosphate Exposure).
+      Strike-throughs are made by the individual department, so <strong>confirm with your proctor</strong> before
+      assuming they are off your test.</p>
+  </div>
+
+  <p class="disclaimer">
+    <strong>Unofficial study aid.</strong> This site is not affiliated with, endorsed by, or produced by the
+    Greater Miami Valley EMS Council. Questions were written from the publicly posted
+    <a href="https://gmvemsc.org/regional-protocol/">2026 GMVEMSC Standing Orders</a> and Standing Orders
+    Training Manual; they are not actual test questions. Protocols are revised on a two-year cycle and by
+    addendum, so <strong>verify every dose and threshold against the current standing orders</strong> at
+    <a href="https://gmvemsc.org/regional-protocol/">gmvemsc.org</a> before relying on it. Your department's
+    medical director sets your actual scope of practice and may approve optional skills differently.
+  </p>
+
+</main>
+
+<script src="js/data/questions-megacode.js"></script>
+<script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-meds.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/skillsheets.js"></script>
+<script src="js/data/videos.js"></script>
+<script src="js/store.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcards - GMVEMSC EMT Protocol Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
+    <nav class="site">
+      <a href="index.html">Dashboard</a>
+      <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html" class="active">Flashcards</a>
+      <a href="skills.html">Skill Sheets</a>
+      <a href="videos.html">Videos</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Flashcards</h1>
+  <p class="sub">Doses, thresholds and protocol numbers worth knowing cold. Flip the card, then say
+    whether you knew it &mdash; that is what tracks your mastery and builds the review deck.
+    Space flips, Y and N grade, arrow keys move.</p>
+
+  <div class="controls" style="margin-bottom:18px">
+    <div>
+      <label class="field" for="card-topic">Topic</label>
+      <select id="card-topic"></select>
+    </div>
+  </div>
+
+  <div class="flashcard" id="flashcard"></div>
+
+  <div class="btn-row" id="grade-row" hidden>
+    <button class="btn good" id="grade-got" type="button">I knew it</button>
+    <button class="btn bad" id="grade-miss" type="button">Need review</button>
+  </div>
+
+  <div class="quizbar" style="margin-top:14px">
+    <span class="muted" id="card-position"></span>
+    <span class="spacer"></span>
+    <span class="muted" id="deck-status"></span>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="card-prev" type="button">Previous</button>
+    <button class="btn" id="card-next" type="button">Skip</button>
+    <button class="btn" id="card-shuffle" type="button">Shuffle deck</button>
+    <button class="btn" id="card-review" type="button">Review missed only</button>
+  </div>
+
+  <p class="disclaimer">
+    Unofficial study aid. Verify all doses and thresholds against the current GMVEMSC Standing Orders.
+  </p>
+</main>
+
+<script src="js/data/questions-megacode.js"></script>
+<script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-meds.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/skillsheets.js"></script>
+<script src="js/store.js"></script>
+<script src="js/report.js"></script>
+<script src="js/cards.js"></script>
+</body>
+</html>
