@@ -1,32 +1,53 @@
-# EMS & Fire Exam Prep
+# GMVEMSC EMT Protocol Prep
 
-A study site for people preparing for EMS certification (NREMT/EMT) and firefighting
-certification (Firefighter I & II, NFPA 1001) exams.
+An unofficial study site for the **Greater Miami Valley EMS Council (GMVEMSC) EMT Protocol
+test** and the departmental skill evaluations that go with it — the testing packet used by
+fire/EMS departments across Ohio EMS Region 2.
 
 No build step, no dependencies, no server. Open `index.html` in a browser and study.
-Progress is saved in `localStorage` on the device, so there are no accounts and nothing
-leaves the browser.
+Progress is saved in `localStorage` on the device.
 
-## What's in it
+## What it covers
 
-- **Practice quizzes** — pick a track (EMS, Fire, or Mixed), a topic, and a question count.
-  Every answer is scored immediately with an explanation of *why* it is right.
-- **Timed exam mode** — one minute per question, no feedback until the end, scored against
-  a 75% practice target with a per-topic breakdown.
-- **Missed-question drill** — the site remembers what you got wrong and can rebuild a quiz
-  from just those.
-- **Flashcards** — the numbers and mnemonics worth knowing cold: doses, CPR rates and depths,
-  rule of nines, nozzle pressures, hydrant color codes, NFPA 704, LUNAR, RECEO-VS.
-- **Progress dashboard** — recent scores, overall accuracy, and a weakest-topics list.
+Content is organized to match the **GMVEMSC EMT Protocol Testing Summary** sheet:
 
-Current bank: 45 EMS questions across 5 domains, 42 fire questions across 8 domains,
-and 44 flashcards. Every question carries an explanation.
+| Section | What's in it |
+| --- | --- |
+| **Mega Code** | Adult and pediatric AED, CPR ratios/rates/depths (2002), resuscitation and field termination (2001), Cardiac / Stroke / Trauma Alerts (2009, 4017, 3018) |
+| **Airway & Trauma** | Rescue airway scope limits (1008), advanced airway confirmation and EtCO2 (1009), CPAP, commercial tourniquets |
+| **Medications** | The 8000-series formulary — albuterol, ipratropium, aspirin, epinephrine, naloxone, nitroglycerin, oral glucose, ondansetron — with doses, contraindications, and which need an MCP order at the EMT level |
+| **Miscellaneous Skills** | 12-lead acquisition, EtCO2, spinal motion restriction (3017), glucometer and oral glucose, IN/IM medication routes |
+
+**101 questions**, each citing the standing order or skill sheet it came from, plus **42 flashcards**
+and **8 practical skill-sheet checklists** transcribed from the Training Manual.
+
+### Features
+
+- **Practice mode** — instant feedback with an explanation and the protocol reference.
+- **Timed exam mode** — one minute per question, scored against an 80% practice target with a
+  per-topic breakdown.
+- **Missed-question drill** — rebuilds a quiz from only what you got wrong.
+- **Skill sheets** — the proctor's checklists (CPAP, AED, tourniquet, supraglottic airway, oxygen,
+  EpiPen, intranasal meds, 12-lead) with tickable steps to rehearse against.
+- **Progress dashboard** — recent scores, overall accuracy, weakest-topic ranking.
+
+## Sources
+
+Everything is derived from material GMVEMSC publishes publicly:
+
+- [2026 GMVEMSC Protocol (Standing Orders)](https://gmvemsc.org/wp-content/uploads/2026/07/2026protocol.pdf) — last update 07/01/2026
+- [2026 Protocol Addendum](https://gmvemsc.org/wp-content/uploads/2026/07/2026protocoladdendum.pdf)
+- [2026 Standing Orders Training Manual](https://gmvemsc.org/wp-content/uploads/2026/09/2026trainingmanual.pdf) — the skill evaluation sheets
+- [2026 Pediatric Dose Sheet](https://gmvemsc.org/wp-content/uploads/2026/09/2026peddosesheet.pdf)
+- [Regional Protocol page](https://gmvemsc.org/regional-protocol/) and [Training Resources](https://gmvemsc.org/training-resources/)
+
+GMVEMSC also posts the **official protocol tests** (EMR / EMT / AEMT / Paramedic / Skill Evaluator)
+as Questbase quizzes, linked from the [Regional Protocol page](https://gmvemsc.org/regional-protocol/).
+Those are the real thing — this site is rehearsal for them.
 
 ## Running it
 
-Open `index.html` directly in any browser — it works from the filesystem.
-
-To serve it locally instead:
+Open `index.html` directly in any browser. To serve it locally instead:
 
 ```bash
 python3 -m http.server 8000
@@ -35,22 +56,22 @@ python3 -m http.server 8000
 
 ## Adding questions
 
-Question banks are plain JavaScript arrays in `js/data/`. Append an object in this shape:
+Banks are plain JavaScript arrays in `js/data/`. Append an object in this shape:
 
 ```js
 {
-  id: "ems-air-13",              // unique; the "ems-"/"fire-" prefix sets the track
-  domain: "Airway & Ventilation", // grouping; new domains appear in the topic dropdown automatically
+  id: "rx-26",                  // unique
+  section: "Medications",       // must match a section on the testing summary sheet
+  domain: "Naloxone",           // finer grouping; new domains appear in the dropdown automatically
+  ref: "8033",                  // protocol number or skill sheet page - shown to the user
   q: "The question text",
   choices: ["A", "B", "C", "D"],
-  answer: 2,                      // zero-based index of the correct choice
-  why: "Why that answer is correct, and ideally why the tempting wrong one isn't."
+  answer: 2,                    // zero-based index of the correct choice
+  why: "Why it's correct, citing the protocol."
 }
 ```
 
 Answer order is shuffled at runtime, so position never gives the answer away.
-
-Flashcards live in `js/data/flashcards.js` as `{ track, topic, front, back }`.
 
 ## Layout
 
@@ -58,27 +79,34 @@ Flashcards live in `js/data/flashcards.js` as `{ track, topic, front, back }`.
 index.html           dashboard: quiz builder, progress, weak topics
 quiz.html            quiz runner (practice and timed exam modes)
 flashcards.html      flashcard deck
+skills.html          practical skill sheet checklists
 css/styles.css       all styling
-js/store.js          question pooling, shuffling, localStorage progress
+js/store.js          pooling, shuffling, localStorage progress
 js/quiz.js           quiz engine and results
 js/home.js           dashboard
 js/cards.js          flashcards
-js/data/             question banks and flashcard deck
+js/sheets.js         skill sheets
+js/data/             question banks, flashcards, skill sheets
 ```
 
-## Ideas for later
+## Keeping it current
 
-- Spaced repetition scheduling for flashcards
-- Full 120-question exam simulation
-- Image-based questions (SCBA components, ladder placement, NFPA placards)
-- Export/import progress so it can move between devices
-- Skill-sheet checklists for the practical exams
+GMVEMSC revises the standing orders on a two-year cycle and issues addendums in between. When a
+new protocol drops:
+
+1. Download the new protocol and training manual from the Regional Protocol page.
+2. Diff the sections cited in `ref` fields — doses and thresholds are where changes land.
+3. Update the affected questions and flashcards, and bump the version note below.
+
+**Content in this repo reflects the 2026 protocol, last updated 07/01/2026.**
 
 ## Disclaimer
 
-Study aid only. Questions are written against widely taught national material — the NREMT
-cognitive exam blueprint, NFPA 1001, and standard IFSTA content — but they are **not actual
-exam questions** and are not a substitute for a course, a textbook, or your medical director's
-protocols. Drug doses, treatment steps, and fireground procedures vary by state, agency, and
-protocol; always follow your own. Verify anything here against current guidelines before
-relying on it in the field.
+**This is an unofficial study aid.** It is not affiliated with, endorsed by, or produced by the
+Greater Miami Valley EMS Council. The questions were written from publicly posted GMVEMSC documents
+and are **not actual test questions**.
+
+Protocols change. Doses, thresholds, scope limits and optional skills vary by agency and by what your
+medical director has approved. **Verify everything here against the current standing orders before
+relying on it**, and follow your own protocols and medical direction in the field. Nothing here
+replaces your course, your instructor, or the official GMVEMSC documents.

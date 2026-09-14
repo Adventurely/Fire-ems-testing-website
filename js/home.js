@@ -1,7 +1,7 @@
 /* Dashboard: quiz builder, progress summary, and weakest-topic list. */
 
 (function () {
-  const trackSelect = document.getElementById("track");
+  const sectionSelect = document.getElementById("section");
   const domainSelect = document.getElementById("domain");
   const countInput = document.getElementById("count");
   const modeSelect = document.getElementById("mode");
@@ -9,12 +9,12 @@
   const missedBtn = document.getElementById("drill-missed");
 
   function fillDomains() {
-    const track = trackSelect.value;
+    const section = sectionSelect.value;
     domainSelect.innerHTML = "";
     const all = el("option", null, "All topics");
     all.value = "all";
     domainSelect.appendChild(all);
-    domainsFor(track).forEach(function (domain) {
+    domainsFor(section).forEach(function (domain) {
       const option = el("option", null, domain);
       option.value = domain;
       domainSelect.appendChild(option);
@@ -23,9 +23,9 @@
   }
 
   function available() {
-    const track = trackSelect.value;
+    const section = sectionSelect.value;
     const domain = domainSelect.value;
-    const pool = poolFor(track);
+    const pool = poolFor(section);
     return domain === "all" ? pool.length : pool.filter(function (q) { return q.domain === domain; }).length;
   }
 
@@ -38,7 +38,7 @@
 
   function start() {
     const params = new URLSearchParams({
-      track: trackSelect.value,
+      section: sectionSelect.value,
       domain: domainSelect.value,
       count: String(Math.max(1, Math.min(available(), parseInt(countInput.value, 10) || 10))),
       mode: modeSelect.value
@@ -46,7 +46,7 @@
     window.location.href = "quiz.html?" + params.toString();
   }
 
-  trackSelect.addEventListener("change", fillDomains);
+  sectionSelect.addEventListener("change", fillDomains);
   domainSelect.addEventListener("change", updateAvailable);
   startBtn.addEventListener("click", start);
   fillDomains();
@@ -62,7 +62,7 @@
     ? "Drill my " + missed.length + " missed question" + (missed.length === 1 ? "" : "s")
     : "No missed questions yet";
   missedBtn.addEventListener("click", function () {
-    window.location.href = "quiz.html?track=mixed&mode=practice&missed=1&count=" + missed.length;
+    window.location.href = "quiz.html?section=all&mode=practice&missed=1&count=" + missed.length;
   });
 
   const summary = document.getElementById("summary");
@@ -88,14 +88,14 @@
 
     const table = el("table", "stats");
     table.innerHTML =
-      "<thead><tr><th>Date</th><th>Track</th><th>Mode</th><th class='num'>Score</th></tr></thead>";
+      "<thead><tr><th>Date</th><th>Section</th><th>Mode</th><th class='num'>Score</th></tr></thead>";
     const body = el("tbody");
     recent.forEach(function (attempt) {
       const tr = el("tr");
       tr.appendChild(el("td", null, new Date(attempt.at).toLocaleDateString(undefined, {
         month: "short", day: "numeric", hour: "numeric", minute: "2-digit"
       })));
-      tr.appendChild(el("td", null, TRACK_LABEL[attempt.track] || attempt.track));
+      tr.appendChild(el("td", null, attempt.section === "all" ? "All sections" : (attempt.section || "All sections")));
       tr.appendChild(el("td", null, attempt.mode === "exam" ? "Timed exam" : "Practice"));
       const score = el("td", "num", pct(attempt.correct, attempt.total) + "%  (" + attempt.correct + "/" + attempt.total + ")");
       score.style.color = attempt.correct / attempt.total >= PASS_MARK ? "var(--good)" : "var(--bad)";
@@ -123,7 +123,7 @@
       const share = pct(row.correct, row.seen);
       const wrapper = el("div", "bar-row");
       const name = el("span");
-      name.appendChild(el("span", "tag " + row.track, row.track === "ems" ? "EMS" : "Fire"));
+      name.appendChild(el("span", "tag both", row.section));
       name.appendChild(document.createTextNode(" " + row.domain));
       name.querySelector(".tag").style.cssText = "margin:0 6px 0 0;vertical-align:middle;";
       wrapper.appendChild(name);
@@ -149,6 +149,6 @@
   });
 
   document.getElementById("bank-count").textContent =
-    EMS_QUESTIONS.length + " EMS and " + FIRE_QUESTIONS.length + " fire questions, plus " +
-    FLASHCARDS.length + " flashcards";
+    ALL_QUESTIONS.length + " protocol questions, " + FLASHCARDS.length + " flashcards and " +
+    SKILL_SHEETS.length + " practical skill sheets";
 })();

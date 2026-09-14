@@ -4,7 +4,7 @@
 
 (function () {
   const config = {
-    track: param("track", "ems"),
+    section: param("section", "all"),
     domain: param("domain", "all"),
     count: Math.max(1, Math.min(100, parseInt(param("count", "20"), 10) || 20)),
     mode: param("mode", "practice") === "exam" ? "exam" : "practice",
@@ -34,9 +34,9 @@
     return;
   }
 
-  document.title = TRACK_LABEL[config.track] + " quiz - EMS & Fire Exam Prep";
+  document.title = "Quiz - GMVEMSC EMT Protocol Prep";
   dom.meta.textContent =
-    TRACK_LABEL[config.track] +
+    (config.section === "all" ? "All sections" : config.section) +
     (config.domain !== "all" ? " - " + config.domain : "") +
     " - " + (config.mode === "exam" ? "Timed exam" : "Practice") +
     (config.onlyMissed ? " - missed questions" : "");
@@ -56,7 +56,7 @@
 
     dom.quiz.innerHTML = "";
 
-    const domainTag = el("div", "muted", item.ref.domain);
+    const domainTag = el("div", "muted", item.ref.domain + "  \u00b7  Protocol " + item.ref.ref);
     dom.quiz.appendChild(domainTag);
 
     dom.quiz.appendChild(el("div", "qtext", item.ref.q));
@@ -132,6 +132,7 @@
       box.appendChild(el("div", "review-line", "Correct answer: " + item.choices[item.answer]));
     }
     box.appendChild(el("div", null, item.ref.why));
+    box.appendChild(el("div", "review-line muted", "Reference: GMVEMSC " + item.ref.ref));
     dom.quiz.insertBefore(box, dom.quiz.querySelector(".btn-row"));
 
     document.getElementById("next-btn").disabled = false;
@@ -189,7 +190,7 @@
 
     Store.recordAttempt({
       at: new Date().toISOString(),
-      track: config.track,
+      section: config.section,
       domain: config.domain,
       mode: config.mode,
       correct: correct,
@@ -217,8 +218,8 @@
       ranOutOfTime
         ? "Time expired - unanswered questions were scored as incorrect."
         : passed
-          ? "At or above the 75% practice target."
-          : "Below the 75% practice target - review the misses below."
+          ? "At or above the 80% practice target."
+          : "Below the 80% practice target - review the misses below."
     ));
     dom.results.appendChild(scoreCard);
 
@@ -247,7 +248,7 @@
       questions.forEach(function (item, i) {
         if (answers[i] === item.answer) return;
         const block = el("div", "review-item");
-        block.appendChild(el("div", "muted", item.ref.domain));
+        block.appendChild(el("div", "muted", item.ref.domain + "  \u00b7  Protocol " + item.ref.ref));
         block.appendChild(el("div", "review-q", item.ref.q));
         const yours = el("div", "review-line");
         yours.appendChild(el("span", "lbl", "Your answer: "));
@@ -267,7 +268,7 @@
 
     if (missed.length) {
       const retry = el("a", "btn primary", "Drill the ones I missed");
-      retry.href = "quiz.html?track=" + config.track + "&mode=practice&missed=1&count=" + missed.length;
+      retry.href = "quiz.html?section=all&mode=practice&missed=1&count=" + missed.length;
       row.appendChild(retry);
     }
 

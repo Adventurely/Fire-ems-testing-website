@@ -1,29 +1,26 @@
-/* Shared helpers: question pools, shuffling, and localStorage-backed progress.
+/* Shared helpers: question pooling, shuffling, and localStorage-backed progress.
    Everything stays on the device - no accounts, no server. */
 
-const BANKS = { ems: EMS_QUESTIONS, fire: FIRE_QUESTIONS };
+const ALL_QUESTIONS = Q_MEGACODE.concat(Q_SKILLS, Q_MEDS);
 
-const TRACK_LABEL = { ems: "EMS / NREMT", fire: "Firefighter I & II", mixed: "Mixed" };
+/* Sections mirror the GMVEMSC EMT Protocol Testing Summary sheet. */
+const SECTIONS = ["Mega Code", "Airway & Trauma", "Medications", "Miscellaneous Skills"];
 
-/* Passing thresholds are practice targets, not official cut scores -
-   the NREMT uses computer-adaptive testing, not a fixed percentage. */
-const PASS_MARK = 0.75;
+/* A practice target, not an official cut score - GMVEMSC sets its own passing
+   score for the computer-based protocol test. */
+const PASS_MARK = 0.8;
 
-function poolFor(track) {
-  if (track === "mixed") return EMS_QUESTIONS.concat(FIRE_QUESTIONS);
-  return BANKS[track] || [];
+function poolFor(section) {
+  if (!section || section === "all") return ALL_QUESTIONS;
+  return ALL_QUESTIONS.filter(function (q) { return q.section === section; });
 }
 
-function trackOf(question) {
-  return question.id.startsWith("ems-") ? "ems" : "fire";
-}
-
-function domainsFor(track) {
+function domainsFor(section) {
   const seen = [];
-  poolFor(track).forEach(function (q) {
+  poolFor(section).forEach(function (q) {
     if (seen.indexOf(q.domain) === -1) seen.push(q.domain);
   });
-  return seen;
+  return seen.sort();
 }
 
 function shuffle(list) {
@@ -48,7 +45,7 @@ function shuffleChoices(question) {
 }
 
 function buildQuiz(opts) {
-  let pool = poolFor(opts.track);
+  let pool = poolFor(opts.section);
   if (opts.domain && opts.domain !== "all") {
     pool = pool.filter(function (q) { return q.domain === opts.domain; });
   }
@@ -63,7 +60,7 @@ function buildQuiz(opts) {
 /* ---------------- progress storage ---------------- */
 
 const Store = (function () {
-  const KEY = "efep.progress.v1";
+  const KEY = "gmvprep.progress.v1";
   const BLANK = { attempts: [], questions: {} };
 
   function read() {
@@ -118,12 +115,11 @@ const Store = (function () {
     domainStats: function () {
       const data = read();
       const byDomain = {};
-      const allQuestions = EMS_QUESTIONS.concat(FIRE_QUESTIONS);
-      allQuestions.forEach(function (question) {
+      ALL_QUESTIONS.forEach(function (question) {
         const row = data.questions[question.id];
         if (!row) return;
         const key = question.domain;
-        if (!byDomain[key]) byDomain[key] = { domain: key, track: trackOf(question), seen: 0, correct: 0 };
+        if (!byDomain[key]) byDomain[key] = { domain: key, section: question.section, seen: 0, correct: 0 };
         byDomain[key].seen += row.seen;
         byDomain[key].correct += row.correct;
       });

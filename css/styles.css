@@ -282,3 +282,26 @@ table.stats td.num, table.stats th.num { text-align: right; }
   .score .big { font-size: 42px; }
   .flashcard .front { font-size: 19px; }
 }
+
+/* ---------- skill sheets ---------- */
+.checklist { display: grid; gap: 2px; }
+.check-row {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 9px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.check-row:hover { background: var(--bg-input); }
+.check-row input {
+  flex: 0 0 auto;
+  margin: 3px 0 0;
+  width: 17px;
+  height: 17px;
+  accent-color: var(--good);
+  cursor: pointer;
+}
+.check-row.done > span { color: var(--text-dim); text-decoration: line-through; }

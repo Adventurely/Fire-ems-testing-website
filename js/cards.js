@@ -1,7 +1,6 @@
 /* Flashcards: tap or press space to flip, arrow keys to move through the deck. */
 
 (function () {
-  const trackSelect = document.getElementById("card-track");
   const topicSelect = document.getElementById("card-topic");
   const cardEl = document.getElementById("flashcard");
   const positionEl = document.getElementById("card-position");
@@ -10,13 +9,12 @@
   let index = 0;
   let flipped = false;
 
-  function topicsFor(track) {
+  function topicsFor() {
     const seen = [];
     FLASHCARDS.forEach(function (card) {
-      if (track !== "all" && card.track !== track) return;
       if (seen.indexOf(card.topic) === -1) seen.push(card.topic);
     });
-    return seen.sort();
+    return seen;
   }
 
   function fillTopics() {
@@ -25,7 +23,7 @@
     const all = el("option", null, "All topics");
     all.value = "all";
     topicSelect.appendChild(all);
-    topicsFor(trackSelect.value).forEach(function (topic) {
+    topicsFor().forEach(function (topic) {
       const option = el("option", null, topic);
       option.value = topic;
       topicSelect.appendChild(option);
@@ -36,12 +34,9 @@
   }
 
   function buildDeck() {
-    const track = trackSelect.value;
     const topic = topicSelect.value;
     deck = shuffle(FLASHCARDS.filter(function (card) {
-      if (track !== "all" && card.track !== track) return false;
-      if (topic !== "all" && card.topic !== topic) return false;
-      return true;
+      return topic === "all" || card.topic === topic;
     }));
     index = 0;
     flipped = false;
@@ -57,7 +52,7 @@
     }
     const card = deck[index];
     const inner = el("div");
-    inner.appendChild(el("div", "topic", (card.track === "ems" ? "EMS" : "Fire") + " - " + card.topic));
+    inner.appendChild(el("div", "topic", card.topic + "  \u00b7  " + card.ref));
     if (flipped) {
       inner.appendChild(el("div", "back", card.back));
       inner.appendChild(el("div", "hint", "Tap or press space for the next card"));
@@ -93,7 +88,6 @@
   document.getElementById("card-next").addEventListener("click", next);
   document.getElementById("card-prev").addEventListener("click", prev);
   document.getElementById("card-shuffle").addEventListener("click", buildDeck);
-  trackSelect.addEventListener("change", function () { fillTopics(); buildDeck(); });
   topicSelect.addEventListener("change", buildDeck);
 
   document.addEventListener("keydown", function (event) {
