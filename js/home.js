@@ -149,6 +149,6 @@
   });
 
   document.getElementById("bank-count").textContent =
-    ALL_QUESTIONS.length + " protocol questions, " + FLASHCARDS.length + " flashcards and " +
-    SKILL_SHEETS.length + " practical skill sheets";
+    ALL_QUESTIONS.length + " protocol questions, " + FLASHCARDS.length + " flashcards, " +
+    SKILL_SHEETS.length + " practical skill sheets and " + VIDEOS.length + " training videos";
 })();

@@ -26,6 +26,12 @@
     return SKILL_SHEETS.filter(function (s) { return s.id === picker.value; })[0] || SKILL_SHEETS[0];
   }
 
+  /* Videos.html deep-links here as skills.html#cpap - honour that on load. */
+  function applyHash() {
+    const want = (window.location.hash || "").replace("#", "");
+    if (want && SKILL_SHEETS.some(function (s) { return s.id === want; })) picker.value = want;
+  }
+
   /* Updating the tally in place keeps the page from jumping under the user on a
      long sheet - re-rendering on every tick threw away their scroll position. */
   function refreshTally() {
@@ -64,6 +70,25 @@
     head.appendChild(tally);
     target.appendChild(head);
 
+    /* Surface any GMVEMSC video that demonstrates this skill. */
+    if (typeof VIDEOS !== "undefined") {
+      const related = VIDEOS.filter(function (v) { return v.sheet === sheet.id; });
+      if (related.length) {
+        const vid = el("div", "card");
+        vid.style.marginTop = "14px";
+        vid.appendChild(el("h3", null, "Watch it done"));
+        related.forEach(function (v) {
+          const line = el("div", "review-line");
+          const link = el("a", null, v.title + (v.duration !== "-" ? "  (" + v.duration + ")" : ""));
+          link.href = "videos.html";
+          line.appendChild(link);
+          line.appendChild(el("span", "muted", "  \u00b7  " + v.source));
+          vid.appendChild(line);
+        });
+        target.appendChild(vid);
+      }
+    }
+
     sheet.groups.forEach(function (group, gi) {
       const card = el("div", "card");
       card.style.marginTop = "14px";
@@ -95,7 +120,9 @@
     refreshTally();
   }
 
-  picker.addEventListener("change", render);
+  picker.addEventListener("change", function () { render(); });
+  window.addEventListener("hashchange", function () { applyHash(); render(); });
+  applyHash();
 
   document.getElementById("sheet-clear").addEventListener("click", function () {
     const data = readChecks();

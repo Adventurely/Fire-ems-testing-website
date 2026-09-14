@@ -18,8 +18,8 @@ Content is organized to match the **GMVEMSC EMT Protocol Testing Summary** sheet
 | **Medications** | The 8000-series formulary — albuterol, ipratropium, aspirin, epinephrine, naloxone, nitroglycerin, oral glucose, ondansetron — with doses, contraindications, and which need an MCP order at the EMT level |
 | **Miscellaneous Skills** | 12-lead acquisition, EtCO2, spinal motion restriction (3017), glucometer and oral glucose, IN/IM medication routes |
 
-**101 questions**, each citing the standing order or skill sheet it came from, plus **42 flashcards**
-and **8 practical skill-sheet checklists** transcribed from the Training Manual.
+**101 questions**, each citing the standing order or skill sheet it came from, plus **42 flashcards**,
+**8 practical skill-sheet checklists** transcribed from the Training Manual, and **10 training videos**.
 
 ### Features
 
@@ -29,6 +29,10 @@ and **8 practical skill-sheet checklists** transcribed from the Training Manual.
 - **Missed-question drill** — rebuilds a quiz from only what you got wrong.
 - **Skill sheets** — the proctor's checklists (CPAP, AED, tourniquet, supraglottic airway, oxygen,
   EpiPen, intranasal meds, 12-lead) with tickable steps to rehearse against.
+- **Training videos** — the Council's own published videos (CPAP, Narcan, SALT triage, triage tags,
+  football equipment removal, MCI communications, Rescue Task Force), embedded click-to-play so nothing
+  loads from YouTube until you ask for it. Skills the Council has no video for are listed as gaps rather
+  than filled with third-party clips.
 - **Progress dashboard** — recent scores, overall accuracy, weakest-topic ranking.
 
 ## Sources
@@ -40,6 +44,9 @@ Everything is derived from material GMVEMSC publishes publicly:
 - [2026 Standing Orders Training Manual](https://gmvemsc.org/wp-content/uploads/2026/09/2026trainingmanual.pdf) — the skill evaluation sheets
 - [2026 Pediatric Dose Sheet](https://gmvemsc.org/wp-content/uploads/2026/09/2026peddosesheet.pdf)
 - [Regional Protocol page](https://gmvemsc.org/regional-protocol/) and [Training Resources](https://gmvemsc.org/training-resources/)
+- Videos from the Council's [YouTube channel](https://www.youtube.com/@greatermiamivalleyemscounc9857),
+  each linked from its own GMVEMSC training-resources page. Every video ID in `js/data/videos.js` was
+  verified against the YouTube oEmbed API, and the recorded `source` is the channel name YouTube reports.
 
 GMVEMSC also posts the **official protocol tests** (EMR / EMT / AEMT / Paramedic / Skill Evaluator)
 as Questbase quizzes, linked from the [Regional Protocol page](https://gmvemsc.org/regional-protocol/).
@@ -80,12 +87,14 @@ index.html           dashboard: quiz builder, progress, weak topics
 quiz.html            quiz runner (practice and timed exam modes)
 flashcards.html      flashcard deck
 skills.html          practical skill sheet checklists
+videos.html          training video library
 css/styles.css       all styling
 js/store.js          pooling, shuffling, localStorage progress
 js/quiz.js           quiz engine and results
 js/home.js           dashboard
 js/cards.js          flashcards
 js/sheets.js         skill sheets
+js/videos.js         video library (click-to-play facade)
 js/data/             question banks, flashcards, skill sheets
 ```
 
@@ -100,6 +109,18 @@ new protocol drops:
 
 **Content in this repo reflects the 2026 protocol, last updated 07/01/2026.**
 
+### Adding a video
+
+Only add a video after verifying it exists and confirming who published it:
+
+```bash
+curl -s "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=VIDEO_ID&format=json"
+```
+
+Then append to `js/data/videos.js`. Set `official: true` only for videos the Council itself published,
+`sheet` to link it to a skill sheet, and `caution` for anything whose technique differs from GMVEMSC
+scope (the AHA Hands-Only CPR entries use this).
+
 ## Disclaimer
 
 **This is an unofficial study aid.** It is not affiliated with, endorsed by, or produced by the
@@ -110,3 +131,7 @@ Protocols change. Doses, thresholds, scope limits and optional skills vary by ag
 medical director has approved. **Verify everything here against the current standing orders before
 relying on it**, and follow your own protocols and medical direction in the field. Nothing here
 replaces your course, your instructor, or the official GMVEMSC documents.
+
+Embedded videos remain the property of their publishers. This site is not affiliated with the Greater
+Miami Valley EMS Council or the American Heart Association. CE credit for the Council's videos comes
+from the post-test on the Council's own page, not from watching here.
