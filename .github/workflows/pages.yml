@@ -1,11 +1,10 @@
 # Publishes the site to GitHub Pages on every push to main.
 #
-# Before this runs you must enable Pages once, by hand:
-#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+# configure-pages runs with enablement: true, so it turns Pages on via the API
+# the first time this workflow runs - no manual trip to Settings -> Pages.
 #
-# Free GitHub Pages requires a PUBLIC repository. On a private repo this
-# workflow will fail at the deploy step unless the account has a plan that
-# includes private Pages.
+# Free GitHub Pages requires a PUBLIC repository. On a private repo the deploy
+# step fails unless the account has a plan that includes private Pages.
 name: Deploy to GitHub Pages
 
 on:
@@ -41,6 +40,9 @@ jobs:
                 --exclude 'scripts' --exclude 'README.md' ./ _site/
 
       - uses: actions/configure-pages@v5
+        with:
+          # Creates the Pages site on first run instead of erroring out.
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
