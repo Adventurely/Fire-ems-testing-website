@@ -64,12 +64,26 @@
       img.src = "https://i.ytimg.com/vi/" + video.id + "/hqdefault.jpg";
       img.alt = "";
       img.loading = "lazy";
-      /* Offline, or if YouTube's thumbnail host is blocked, drop the broken-image
-         icon and let the poster fall back to a clean black panel. */
-      img.addEventListener("error", function () { img.style.display = "none"; });
+      /* If the thumbnail cannot load, the player almost certainly cannot either -
+         either we are offline or the host blocks third-party embeds. Drop the broken
+         image and turn the poster into a link out to YouTube rather than leaving a
+         play button that does nothing. */
+      img.addEventListener("error", function () {
+        img.style.display = "none";
+        holder.classList.add("blocked");
+        poster.setAttribute("aria-label", "Open " + video.title + " on YouTube");
+        const note = el("span", "poster-note", "Open on YouTube");
+        poster.appendChild(note);
+      });
       poster.appendChild(img);
       poster.appendChild(el("span", "play-badge", "▶"));
-      poster.addEventListener("click", function () { play(holder, video); });
+      poster.addEventListener("click", function () {
+        if (holder.classList.contains("blocked")) {
+          window.open("https://www.youtube.com/watch?v=" + video.id, "_blank", "noopener");
+          return;
+        }
+        play(holder, video);
+      });
       holder.appendChild(poster);
       card.appendChild(holder);
 

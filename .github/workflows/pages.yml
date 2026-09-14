@@ -1,0 +1,48 @@
+# Publishes the site to GitHub Pages on every push to main.
+#
+# Before this runs you must enable Pages once, by hand:
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+#
+# Free GitHub Pages requires a PUBLIC repository. On a private repo this
+# workflow will fail at the deploy step unless the account has a plan that
+# includes private Pages.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The site is plain static files - no build step. Ship the repo root
+      # minus the things that should not be served.
+      - name: Stage site
+        run: |
+          mkdir -p _site
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'build' \
+                --exclude 'scripts' --exclude 'README.md' ./ _site/
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

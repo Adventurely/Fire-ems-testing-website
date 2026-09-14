@@ -346,3 +346,14 @@ table.stats td.num, table.stats th.num { text-align: right; }
 }
 .video-poster:hover .play-badge { background: var(--fire); border-color: var(--fire); color: #1f0a05; }
 ul.gaps { margin: 0; padding-left: 20px; color: var(--text-dim); font-size: 14px; line-height: 1.8; }
+.poster-note {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 46px);
+  transform: translateX(-50%);
+  font-size: 13px;
+  letter-spacing: .3px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.video-holder.blocked .play-badge { background: var(--fire); border-color: var(--fire); color: #1f0a05; }
