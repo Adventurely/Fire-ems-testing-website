@@ -1,10 +1,13 @@
 # Publishes the site to GitHub Pages on every push to main.
 #
-# configure-pages runs with enablement: true, so it turns Pages on via the API
-# the first time this workflow runs - no manual trip to Settings -> Pages.
+# This deploys by pushing the built site to the gh-pages branch, rather than
+# using actions/deploy-pages. The Pages REST API refuses GITHUB_TOKEN with
+# "Resource not accessible by integration" on this repo, so the API-based
+# flow cannot create or update the Pages site. Pushing a branch only needs
+# contents: write, which the workflow token does have.
 #
-# Free GitHub Pages requires a PUBLIC repository. On a private repo the deploy
-# step fails unless the account has a plan that includes private Pages.
+# Pages is configured to serve from gh-pages (root). Don't edit that branch
+# by hand - this workflow force-pushes over it.
 name: Deploy to GitHub Pages
 
 on:
@@ -13,9 +16,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # Let a running deploy finish rather than cancelling it mid-publish.
 concurrency:
@@ -24,9 +25,6 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,14 +35,22 @@ jobs:
         run: |
           mkdir -p _site
           rsync -a --exclude '.git' --exclude '.github' --exclude 'build' \
-                --exclude 'scripts' --exclude 'README.md' ./ _site/
+                --exclude 'scripts' --exclude 'README.md' --exclude '_site' \
+                ./ _site/
+          # Tell Pages to serve the files as-is instead of running Jekyll.
+          touch _site/.nojekyll
 
-      - uses: actions/configure-pages@v5
-        with:
-          # Creates the Pages site on first run instead of erroring out.
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish to gh-pages
+        run: |
+          cd _site
+          git init -q
+          git checkout -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA::7} from main"
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

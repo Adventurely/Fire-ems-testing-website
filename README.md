@@ -69,35 +69,33 @@ GMVEMSC also posts the **official protocol tests** (EMR / EMT / AEMT / Paramedic
 as Questbase quizzes, linked from the [Regional Protocol page](https://gmvemsc.org/regional-protocol/).
 Those are the real thing — this site is rehearsal for them.
 
-## Using it on a phone
+## Live site
 
-The site is published as a private Claude Artifact:
+**https://adventurely.github.io/Fire-ems-testing-website/**
+
+Open it on a phone and add it to the home screen and it behaves like an app. Quiz progress and
+skill-sheet checkmarks are stored per device, so phone and laptop keep separate progress.
+
+### How deployment works
+
+`.github/workflows/pages.yml` runs on every push to `main`: it stages the repo root (minus
+`.github`, `scripts`, `build` and the README), adds `.nojekyll`, and force-pushes the result to the
+`gh-pages` branch, which Pages serves from the root.
+
+It deploys by pushing a branch rather than using `actions/deploy-pages`, because the Pages REST API
+rejects `GITHUB_TOKEN` on this repo with "Resource not accessible by integration". Pushing a branch
+only needs `contents: write`. Don't edit `gh-pages` by hand — the workflow force-pushes over it.
+
+### Mirror: Claude Artifact
+
+The site is also published as a private artifact, useful if the repo ever goes private again:
 
 **https://claude.ai/code/artifact/432a77df-7302-41f0-8435-6346243ac69a**
 
-Open it on a phone, add it to the home screen, and it behaves like an app. It is private to the
-account that published it until shared from the page's share menu. Quiz progress and skill-sheet
-checkmarks are stored per device, so phone and laptop keep separate progress.
-
-One limitation: the artifact host blocks third-party embeds, so video players do not run there.
-The video page detects this and turns each thumbnail into an "Open on YouTube" link instead.
-
-To republish after changing the site:
-
-```bash
-python3 scripts/build-artifact.py
-```
-
-then publish `build/` to the same artifact URL.
-
-### GitHub Pages
-
-`.github/workflows/pages.yml` will deploy the site on every push to `main`, but it needs two things:
-
-1. **A public repository.** Free GitHub Pages does not serve private repos.
-2. **Pages enabled once by hand** — Settings → Pages → Source: "GitHub Actions".
-
-Pages serves the site from its own origin, so YouTube embeds work there and the videos play inline.
+Rebuild that package with `python3 scripts/build-artifact.py` and publish `build/` to the same URL.
+One difference from Pages: the artifact host blocks third-party embeds, so video players do not run
+there — the video page detects it and turns each thumbnail into an "Open on YouTube" link. On Pages
+the videos play inline.
 
 ## Running it
 
