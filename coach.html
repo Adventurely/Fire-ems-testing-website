@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instructor View - GMVEMSC EMT Protocol Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
+    <nav class="site">
+      <a href="index.html">Dashboard</a>
+      <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="skills.html">Skill Sheets</a>
+      <a href="videos.html">Videos</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Instructor view</h1>
+  <p class="sub">Paste a student's share code or drop their exported file to see how they are doing
+    &mdash; scores over time, weakest topics, and the exact questions and flashcards they keep missing.</p>
+
+  <div class="card" id="drop">
+    <label class="field" for="paste">Share code or exported JSON</label>
+    <textarea id="paste" class="share-box" rows="4" placeholder="Paste a code beginning GMV1- , or drop the .json file anywhere on this box"></textarea>
+    <div class="btn-row">
+      <button class="btn primary" id="load" type="button">Show results</button>
+      <button class="btn" id="pick" type="button">Choose a file</button>
+      <input type="file" id="file" accept=".json,application/json,text/plain" hidden>
+    </div>
+    <p class="muted" id="status"></p>
+  </div>
+
+  <div id="heading" hidden>
+    <h2 id="who"></h2>
+    <p class="muted" id="when"></p>
+  </div>
+
+  <div id="report"></div>
+
+  <p class="disclaimer">
+    The file is read in your own browser &mdash; nothing is uploaded, stored or transmitted by this page.
+    A student's results are theirs; ask before sharing them onward.
+  </p>
+</main>
+
+<script src="js/data/questions-megacode.js"></script>
+<script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-meds.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/skillsheets.js"></script>
+<script src="js/data/videos.js"></script>
+<script src="js/store.js"></script>
+<script src="js/report.js"></script>
+<script src="js/coach.js"></script>
+</body>
+</html>

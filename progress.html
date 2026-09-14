@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progress - GMVEMSC EMT Protocol Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
+    <nav class="site">
+      <a href="index.html">Dashboard</a>
+      <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="skills.html">Skill Sheets</a>
+      <a href="videos.html">Videos</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Your progress</h1>
+  <p class="sub">Everything you have answered, by section, topic, flashcard and skill sheet.
+    Saved in this browser as you go.</p>
+
+  <div class="card">
+    <label class="field" for="student-name">Your name (used when you share results)</label>
+    <input type="text" id="student-name" placeholder="e.g. G. Stafford" style="max-width:320px">
+  </div>
+
+  <div id="report"></div>
+
+  <h2>Back up or share</h2>
+  <div class="card">
+    <p class="muted" style="margin-top:0">Progress lives in this browser only. Clearing site data, or
+      switching between your phone and a computer, will not carry it over &mdash; export a copy to move
+      it or keep it safe.</p>
+    <div class="btn-row">
+      <button class="btn primary" id="export-file" type="button">Download my progress</button>
+      <button class="btn" id="export-code" type="button">Copy a share code</button>
+    </div>
+    <textarea id="share-box" class="share-box" rows="3" readonly hidden></textarea>
+    <p class="muted" id="copy-status"></p>
+
+    <h3 style="margin-top:20px">Restore or merge</h3>
+    <p class="muted" style="margin-top:0">Importing merges into what is already here and keeps the higher
+      counts, so nothing is lost if you import an older file.</p>
+    <div class="btn-row">
+      <button class="btn" id="import-btn" type="button">Import a file</button>
+      <button class="btn" id="import-code-btn" type="button">Paste a code</button>
+      <input type="file" id="import-file" accept=".json,application/json,text/plain" hidden>
+    </div>
+    <p class="muted" id="import-status"></p>
+  </div>
+
+  <h2>Sharing with an instructor</h2>
+  <div class="card">
+    <p class="muted" style="margin-top:0">Use <strong>Copy a share code</strong> or
+      <strong>Download my progress</strong> and send it to whoever is helping you study. They open the
+      <a href="coach.html">instructor view</a> and paste it in to see your scores, your weakest topics
+      and the exact questions you keep missing.</p>
+    <p class="muted"><strong>Nothing is sent anywhere automatically.</strong> This site has no server and
+      no accounts &mdash; your results stay in this browser until you choose to export them and hand
+      them to someone.</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="reset" type="button">Erase progress on this device</button>
+  </div>
+
+  <p class="disclaimer">
+    Unofficial study aid built from the public 2026 GMVEMSC Standing Orders. Not actual test questions.
+  </p>
+</main>
+
+<script src="js/data/questions-megacode.js"></script>
+<script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-meds.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/skillsheets.js"></script>
+<script src="js/data/videos.js"></script>
+<script src="js/store.js"></script>
+<script src="js/report.js"></script>
+<script src="js/progress.js"></script>
+</body>
+</html>

@@ -22,6 +22,10 @@
 
 * { box-sizing: border-box; }
 
+/* A class that sets `display` outranks the browser's [hidden] rule, so
+   `hidden` on anything carrying one (e.g. .btn-row) would otherwise show. */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -357,3 +361,63 @@ ul.gaps { margin: 0; padding-left: 20px; color: var(--text-dim); font-size: 14px
   white-space: nowrap;
 }
 .video-holder.blocked .play-badge { background: var(--fire); border-color: var(--fire); color: #1f0a05; }
+
+/* ---------- progress & reporting ---------- */
+.num { font-variant-numeric: tabular-nums; }
+
+.card.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-value { font-size: 30px; font-weight: 700; line-height: 1.15; letter-spacing: -.4px; }
+
+/* Quiz score history: one thin column per attempt, anchored to a baseline. */
+.history {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 5px;
+  height: 108px;
+  padding-top: 18px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+/* Cap the width so two or three attempts read as columns, not slabs. */
+.hcol-wrap { flex: 1 1 0; min-width: 8px; max-width: 52px; height: 100%; display: flex; align-items: flex-end; position: relative; }
+.hcol { width: 100%; border-radius: 4px 4px 0 0; min-height: 2px; }
+.hcol-label {
+  position: absolute;
+  top: -18px;
+  right: 0;
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.btn.good { background: var(--good); border-color: var(--good); color: #062109; font-weight: 600; }
+.btn.good:hover:not(:disabled) { background: #4fd162; border-color: #4fd162; }
+.btn.bad { background: var(--bad-dim); border-color: var(--bad); color: var(--text); font-weight: 600; }
+.btn.bad:hover:not(:disabled) { background: #52211f; }
+
+.share-box {
+  width: 100%;
+  margin-top: 12px;
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  resize: vertical;
+  word-break: break-all;
+}
+input[type="text"] {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font: inherit;
+  font-size: 15px;
+}
+#drop.over { border-color: var(--ems); background: #1b2531; }
