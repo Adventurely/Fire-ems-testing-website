@@ -421,3 +421,30 @@ input[type="text"] {
   font-size: 15px;
 }
 #drop.over { border-color: var(--ems); background: #1b2531; }
+
+/* ---------- exam runner ---------- */
+.qgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 6px;
+  max-width: 560px;
+}
+.qcell {
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  color: var(--text-dim);
+  border-radius: 7px;
+  font: inherit;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.qcell:hover { border-color: #4a5b6d; color: var(--text); }
+.qcell.done { background: var(--ems-dim); border-color: var(--ems); color: var(--ems); }
+.qcell.here { outline: 2px solid var(--text); outline-offset: 1px; color: var(--text); }
+#clock { font-size: 17px; font-weight: 700; }

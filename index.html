@@ -13,6 +13,7 @@
     <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
     <nav class="site">
       <a href="index.html" class="active">Dashboard</a>
+      <a href="exams.html">Exams</a>
       <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
       <a href="flashcards.html">Flashcards</a>
       <a href="skills.html">Skill Sheets</a>
@@ -30,6 +31,11 @@
     citing the protocol number it comes from. <span id="bank-count"></span>.</p>
 
   <div class="grid">
+    <a class="card" href="exams.html">
+      <span class="tag fire">Timed</span>
+      <h3>5 practice exams</h3>
+      <p class="muted">Fixed 45-question forms, 30 minutes each, blueprinted across the protocol. Every answer explained afterwards.</p>
+    </a>
     <a class="card" href="quiz.html?section=Mega%20Code&amp;mode=practice&amp;count=15">
       <span class="tag ems">Section</span>
       <h3>Mega Code</h3>
@@ -49,11 +55,6 @@
       <span class="tag fire">Section</span>
       <h3>Miscellaneous Skills</h3>
       <p class="muted">12-lead acquisition, EtCO2, spinal motion restriction, glucometer and oral glucose, medication routes.</p>
-    </a>
-    <a class="card" href="quiz.html?section=all&amp;mode=exam&amp;count=40">
-      <span class="tag both">Timed</span>
-      <h3>40-question timed exam</h3>
-      <p class="muted">One minute per question across all four sections, no feedback until you finish.</p>
     </a>
     <a class="card" href="videos.html">
       <span class="tag ems">Video</span>
@@ -141,12 +142,16 @@
 
 </main>
 
+<script src="js/data/questions-general.js"></script>
 <script src="js/data/questions-megacode.js"></script>
 <script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-trauma.js"></script>
+<script src="js/data/questions-medical.js"></script>
 <script src="js/data/questions-meds.js"></script>
 <script src="js/data/flashcards.js"></script>
 <script src="js/data/skillsheets.js"></script>
 <script src="js/data/videos.js"></script>
+<script src="js/data/exams.js"></script>
 <script src="js/store.js"></script>
 <script src="js/home.js"></script>
 </body>

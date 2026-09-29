@@ -150,5 +150,6 @@
 
   document.getElementById("bank-count").textContent =
     ALL_QUESTIONS.length + " protocol questions, " + FLASHCARDS.length + " flashcards, " +
-    SKILL_SHEETS.length + " practical skill sheets and " + VIDEOS.length + " training videos";
+    SKILL_SHEETS.length + " practical skill sheets, " + VIDEOS.length + " training videos and " +
+    EXAMS.length + " timed practice exams";
 })();

@@ -404,30 +404,6 @@ const Q_SKILLS = [
     why: "1012 states plainly that IO insertion is not an EMR skill and is not an EMT skill. It belongs to the AEMT and Paramedic. As an EMT you may set up and prime the line and assist, but you do not place the IO."
   },
   {
-    id: "iv-05", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1012",
-    q: "For an ADULT in cardiac arrest, GMVEMSC 1012 gives the preferable order of vascular access as:",
-    choices: [
-      "Proximal tibia IO, then antecubital IV, then external jugular",
-      "External jugular IV, then antecubital IV, then proximal humeral head or distal femur IO",
-      "Any IO site first, since it is fastest",
-      "Central line, then antecubital IV"
-    ],
-    answer: 1,
-    why: "1012 lists external jugular (EJ) vein IV first, then antecubital (AC) vein IV, then proximal humeral head or distal femur IO. If the distal femur is used, better access should be sought as the arrest progresses."
-  },
-  {
-    id: "iv-06", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1012",
-    q: "Per GMVEMSC 1012, IO access is limited to patients who are:",
-    choices: [
-      "Any patient needing fluids",
-      "Unresponsive or hemodynamically unstable, and only when less invasive means are ineffective or unavailable",
-      "In cardiac arrest only",
-      "Under 12 years old"
-    ],
-    answer: 1,
-    why: "1012's general guideline restricts IO use to unresponsive or hemodynamically unstable patients, and then only when less invasive means are ineffective or not available. It is not a shortcut around a difficult IV on a stable patient."
-  },
-  {
     id: "iv-07", section: "Miscellaneous Skills", domain: "IV Setup", ref: "1013",
     q: "Per GMVEMSC 1013, who may use alternate vascular access routes such as a PICC line or dialysis fistula?",
     choices: [

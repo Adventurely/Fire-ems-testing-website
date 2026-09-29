@@ -1,10 +1,22 @@
 /* Shared helpers: question pooling, shuffling, and localStorage-backed progress.
    Everything stays on the device - no accounts, no server. */
 
-const ALL_QUESTIONS = Q_MEGACODE.concat(Q_SKILLS, Q_MEDS);
+/* EMT scope only. Questions requiring AEMT or paramedic doses and procedures
+   are deliberately excluded; questions about where the EMT's scope ENDS stay,
+   because knowing what you may not do is itself tested. */
+const ALL_QUESTIONS = Q_GENERAL.concat(Q_MEGACODE, Q_SKILLS, Q_TRAUMA, Q_MEDICAL, Q_MEDS);
 
-/* Sections mirror the GMVEMSC EMT Protocol Testing Summary sheet. */
-const SECTIONS = ["Mega Code", "Airway & Trauma", "Medications", "Miscellaneous Skills"];
+/* The first four mirror the EMT Protocol Testing Summary sheet; the rest cover
+   the wider standing orders the written test draws on. */
+const SECTIONS = [
+  "Patient Management",
+  "Mega Code",
+  "Airway & Trauma",
+  "Trauma Care",
+  "Medical & OB",
+  "Medications",
+  "Miscellaneous Skills"
+];
 
 /* A practice target, not an official cut score - GMVEMSC sets its own passing
    score for the computer-based protocol test. */

@@ -172,18 +172,6 @@ const Q_MEDS = [
     answer: 1,
     why: "8017's medical control row: initial dose at all levels is No, but for allergies/anaphylaxis, repeat doses by EMR/EMTs require medical control - Yes. AEMTs and paramedics do not need MCP for follow-up dosing."
   },
-  {
-    id: "rx-17", section: "Medications", domain: "Epinephrine", ref: "8019",
-    q: "Epinephrine 1:10,000 in the GMVEMSC formulary (8019) is indicated for:",
-    choices: [
-      "Anaphylaxis at the EMT level",
-      "V-Fib, pulseless V-Tach, asystole and PEA - paramedic only",
-      "Asthma at the AEMT level",
-      "Any patient with hypotension"
-    ],
-    answer: 1,
-    why: "8019 is paramedic-only: 1 mg IV repeated every 3-5 minutes for VF, pulseless VT, asystole and PEA, plus pediatric bradycardia. The EMT's epinephrine is the auto-injector (8017) or, with medical director authorization, 1:1,000 IM (8018)."
-  },
 
   /* ---------- Naloxone ---------- */
   {
@@ -296,13 +284,6 @@ const Q_MEDS = [
     why: "8018 brackets the EMT in optional-skill notation: the EMT may only administer 1:1,000 IM after authorization and training from their medical director. Braces and brackets in GMVEMSC protocols mark optional skills requiring medical director approval."
   },
   {
-    id: "sc-03", section: "Medications", domain: "Scope & Medical Control", ref: "1008",
-    q: "Per GMVEMSC 1008, an AEMT may intubate only when the patient is:",
-    choices: ["Unresponsive", "Apneic", "Pulseless and apneic", "In respiratory distress"],
-    answer: 1,
-    why: "1008 restricts the AEMT to intubating apneic patients. Compare this with the EMT, who may place a rescue airway only in a patient who is both pulseless AND apneic. The distinction is a common test question."
-  },
-  {
     id: "sc-04", section: "Medications", domain: "Scope & Medical Control", ref: "1001",
     q: "When a situation is not addressed by the GMVEMSC standing orders, the protocol's stated approach is to:",
     choices: [
@@ -379,16 +360,4 @@ const Q_MEDS = [
     answer: 1,
     why: "8038's indication is simply nausea or active vomiting. Its listed protocol is 4001 Abdominal Pain. Remember it is specifically NOT to be given prophylactically alongside naloxone."
   },
-  {
-    id: "rx-32", section: "Medications", domain: "Ondansetron", ref: "8038",
-    q: "Per GMVEMSC 8038, for a patient who is ACTIVELY vomiting, the preferred route (AEMT/Paramedic) is:",
-    choices: [
-      "The orally dissolving tablet",
-      "Slow IV/IO, since the patient may also need hydration",
-      "Intranasal",
-      "Intramuscular"
-    ],
-    answer: 1,
-    why: "8038 names 4 mg slow IV/IO the preferred route for active vomiting, because the patient may need hydration as well. An actively vomiting patient is also unlikely to keep a dissolving tablet down."
-  }
 ];

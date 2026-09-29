@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Exams - GMVEMSC EMT Protocol Prep</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="dot"></span> GMVEMSC EMT Protocol Prep</a>
+    <nav class="site">
+      <a href="index.html">Dashboard</a>
+      <a href="exams.html" class="active">Exams</a>
+      <a href="quiz.html?section=all&amp;mode=practice&amp;count=20">Quiz</a>
+      <a href="flashcards.html">Flashcards</a>
+      <a href="skills.html">Skill Sheets</a>
+      <a href="videos.html">Videos</a>
+      <a href="progress.html">Progress</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="intro">
+    <h1>Practice exams</h1>
+    <p class="sub">Five fixed exam forms, 45 questions in 30 minutes each, blueprinted across the
+      protocol the way a real form is. No feedback while the clock runs &mdash; every question is
+      explained afterwards.</p>
+  </div>
+
+  <div id="exam-list"></div>
+
+  <!-- exam in progress -->
+  <div id="runner" hidden>
+    <div class="quizbar">
+      <span id="exam-title"></span>
+      <span class="spacer"></span>
+      <span id="qcount"></span>
+      <span class="muted" id="answered"></span>
+      <span id="clock" class="num"></span>
+    </div>
+    <div class="progress"><span id="progress-fill" style="width:0"></span></div>
+
+    <div id="qbody"></div>
+
+    <div class="btn-row">
+      <button class="btn" id="prev" type="button">Previous</button>
+      <button class="btn" id="next" type="button">Next</button>
+      <button class="btn primary" id="submit" type="button">Submit exam</button>
+    </div>
+
+    <h3 style="margin-top:22px">Jump to a question</h3>
+    <div id="qgrid" class="qgrid"></div>
+  </div>
+
+  <div id="results" hidden></div>
+
+  <p class="disclaimer">
+    Unofficial practice material built from the public 2026 GMVEMSC Standing Orders &mdash; EMT scope
+    only. These are not actual test questions and the 45-question, 30-minute format is a practice
+    convention, not a published GMVEMSC specification. Confirm your real exam's length, time limit and
+    passing score with your proctor.
+  </p>
+</main>
+
+<script src="js/data/questions-general.js"></script>
+<script src="js/data/questions-megacode.js"></script>
+<script src="js/data/questions-skills.js"></script>
+<script src="js/data/questions-trauma.js"></script>
+<script src="js/data/questions-medical.js"></script>
+<script src="js/data/questions-meds.js"></script>
+<script src="js/data/flashcards.js"></script>
+<script src="js/data/skillsheets.js"></script>
+<script src="js/data/videos.js"></script>
+<script src="js/data/exams.js"></script>
+<script src="js/store.js"></script>
+<script src="js/report.js"></script>
+<script src="js/exam.js"></script>
+</body>
+</html>
