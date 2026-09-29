@@ -17,9 +17,42 @@ Content is organized to match the **GMVEMSC EMT Protocol Testing Summary** sheet
 | **Airway & Trauma** | Rescue airway scope limits (1008), advanced airway confirmation and EtCO2 (1009), CPAP, commercial tourniquets |
 | **Medications** | The 8000-series formulary — albuterol, ipratropium, aspirin, epinephrine, naloxone, nitroglycerin, oral glucose, ondansetron — with doses, contraindications, and which need an MCP order at the EMT level |
 | **Miscellaneous Skills** | 12-lead acquisition, EtCO2, spinal motion restriction (3017), glucometer and oral glucose, IN/IM medication routes, IV setup |
+| **Patient Management** | Non-initiation of care (1003), DNR orders (1004), general patient management and EMT assisting ALS (1005), abuse and neglect reporting (1006), Glasgow Coma Score (3003) |
+| **Trauma Care** | General and major trauma (3001, 3002), trauma arrest (3004), burns and smoke inhalation (3005), SALT triage (3019) |
+| **Medical & OB** | Seizures (4014), shock (4016), complicated childbirth (4007), newborn care (5002), diabetic emergencies (4008), behavioral (4004), overdose, sepsis, stroke |
 
-**115 questions**, each citing the standing order or skill sheet it came from, plus **47 flashcards**,
-**9 practical skill-sheet checklists** transcribed from the Training Manual, and **10 training videos**.
+**205 questions**, each citing the standing order or skill sheet it came from, plus **5 timed practice
+exams**, **47 flashcards**, **9 practical skill-sheet checklists** transcribed from the Training Manual,
+and **10 training videos**.
+
+### EMT scope only
+
+The bank covers **EMT scope only**. Questions requiring an AEMT or paramedic dose, drug or procedure
+have been removed. Questions about where the EMT's scope *ends* are deliberately kept - that an EMT may
+place a rescue airway only in a pulseless and apneic patient (1008), that IO insertion is not an EMT
+skill (1012), that aspirin and nitroglycerin need an MCP order for the EMT (2008) - because knowing what
+you may not do is itself tested.
+
+### Practice exams
+
+Five fixed forms, **45 questions in 30 minutes** each, at `exams.html`:
+
+- **Fixed, not random.** A retake is the same form, so scores are comparable. Only the answer-choice
+  order shuffles per attempt, so a retake tests recall rather than where the right answer sat.
+- **Blueprinted** across the seven sections in proportion to the pool, the way a real form is:
+  7 Patient Management, 6 Mega Code, 6 Airway & Trauma, 7 Trauma Care, 7 Medical & OB, 7 Medications,
+  5 Miscellaneous Skills.
+- **No feedback while the clock runs.** A jump grid shows which questions are answered so you can go
+  back before time expires; at 0:00 the exam auto-submits and unanswered questions score wrong.
+- **Every question is explained afterwards** - not only the misses, since the ones you guessed right are
+  worth reading too - with the protocol citation, which is withheld during the exam because it would
+  give the answer away.
+
+Rebuild the forms with `node scripts/build-exams.js`, which writes `js/data/exams.js`. The pool is 205
+and 5 x 45 = 225 slots, so 20 questions appear on two forms; none repeats within a single form.
+
+**The 45-question, 30-minute format is a practice convention, not a published GMVEMSC specification.**
+Confirm your real exam's length, time limit and passing score with your proctor.
 
 ### Handwritten items on the testing summary sheet
 
@@ -129,6 +162,7 @@ Answer order is shuffled at runtime, so position never gives the answer away.
 
 ```
 index.html           dashboard: quiz builder, progress, weak topics
+exams.html           five fixed timed practice exams
 quiz.html            quiz runner (practice and timed exam modes)
 flashcards.html      flashcard deck
 skills.html          practical skill sheet checklists
@@ -140,6 +174,8 @@ js/home.js           dashboard
 js/cards.js          flashcards
 js/sheets.js         skill sheets
 js/videos.js         video library (click-to-play facade)
+js/exam.js           timed exam runner and explained review
+scripts/build-exams.js  regenerates the five exam forms
 js/data/             question banks, flashcards, skill sheets
 ```
 
